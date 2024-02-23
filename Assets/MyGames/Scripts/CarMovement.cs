@@ -2,23 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CarMove : MonoBehaviour
+public class CarMovement : MonoBehaviour
 {
-    public float speed = 2f;
+    public float speed = 10f;
     public Transform[] points;
     private int currentPoint;
-    public float verticalSpeed = 10f;
-    public float horizontalSpeed = 10f;
-    // Start is called before the first frame update
+    float horizontalSpeed = 10;
+    float verticalSpeed = 10;
     public enum Mode
     {
         Automatic,
         Manual
     };
     public Mode mode;
+    // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Bat dau chay");
+        Debug.Log("Bat dau Start");
     }
 
     // Update is called once per frame
@@ -36,13 +36,13 @@ public class CarMove : MonoBehaviour
             }
             transform.position = Vector3.MoveTowards(transform.position, points[currentPoint].position, Time.deltaTime * speed);
             transform.LookAt(points[currentPoint].position);
-        }          
+        }
         else if (mode == Mode.Manual)
         {
-            float h =  Input.GetAxis("Horizontal") * Time.deltaTime;
-            float v =  Input.GetAxis("Vertical") * Time.deltaTime;
+            float h = horizontalSpeed * Input.GetAxis("Horizontal") * Time.deltaTime;
+            float v = verticalSpeed * Input.GetAxis("Vertical") * Time.deltaTime;
             transform.Translate(0, 0, v);
-            transform.Rotate(0, h,0);
+            transform.Rotate(0, h, 0);
         }
     }
 }
