@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CarMovement : MonoBehaviour
 {
-    public float speed = 10f;
+    public float speed ;
     public Transform[] points;
     private int currentPoint;
     float horizontalSpeed = 10;
